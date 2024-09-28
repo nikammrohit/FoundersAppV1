@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Auth from './components/Auth';
+import Profile from './components/Profile';
+import Geolocation from './components/Geolocation';
+import Messaging from './components/Messaging';
+import Events from './components/Events';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/auth" component={Auth} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/geolocation" component={Geolocation} />
+        <Route path="/messaging" component={Messaging} />
+        <Route path="/events" component={Events} />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
