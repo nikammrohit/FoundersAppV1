@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from './firebase';
+import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
 import '../styles/Signup.css';
 
@@ -11,6 +12,7 @@ const Signup = () => {
     const [success, setSuccess] = useState(''); // State for success messages
     const [isExistingUser, setIsExistingUser] = useState(false); // State to check if user already exists
     const [isEmailEntered, setIsEmailEntered] = useState(false); // State to check if email is entered
+    const navigate = useNavigate(); // Hook to access the history instance
 
     // Function to handle email submission
     const handleEmailSubmit = async () => {
@@ -50,6 +52,7 @@ const Signup = () => {
             await signInWithEmailAndPassword(auth, email, password); // Attempt to sign in with email and password
             setSuccess('Logged in successfully!'); // Set success message
             setError(''); // Clear any previous errors
+            navigate('/homepage'); // Redirect to homepage
         } catch (error) {
             setError(error.message); // Set error message
             setSuccess(''); // Clear any previous success messages
@@ -62,6 +65,7 @@ const Signup = () => {
             await createUserWithEmailAndPassword(auth, email, password); // Attempt to create a new user with email and password
             setSuccess('Account created successfully!'); // Set success message
             setError(''); // Clear any previous errors
+            navigate('/homepage'); // Redirect to homepage
         } catch (error) {
             // Handle different error cases
             switch (error.code) {
