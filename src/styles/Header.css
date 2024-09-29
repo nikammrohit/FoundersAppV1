@@ -71,54 +71,37 @@
   margin-left: 20px;
 }
 
-/* CSS */
+
 .header .nav ul li button {
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  letter-spacing: 2px;
+  display: inline-block;
+  padding: 8px 20px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #333;
+  text-shadow: 0 0 20px #fff, 0 0 1px #fff, 0 0 1px #fff;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 50px;
   text-decoration: none;
-  text-transform: uppercase;
-  color: #333;
-  cursor: pointer;
-  border: 3px solid;
-  padding: 0.2em 0.45em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  border-radius: 50px; /* Added for pill shape */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header .nav ul li button:hover {
+  background-color: #222;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
 }
 
 .header .nav ul li button:active {
-  box-shadow: 0px 0px 0px 0px;
-  top: 2px;
-  left: 3px;
+  transform: scale(0.95); /* Shrink the button */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.8); /* Create sinking-in effect */
 }
 
-@media (min-width: 768px) {
-  .header .nav ul li button {
-    padding: 0.2em 0.7em;
-  }
-}
 
 .nav ul li a {
   text-decoration: none;
   color: #333;
   font-size: 1rem;
   transition: color 0.3s ease;
-}
-
-.nav ul li a[href="#about"]:hover {
-  color: #ee695e;
-}
-
-.nav ul li a[href="#projects"]:hover {
-  color: #f5bd4f;
-}
-
-.nav ul li a[href="#contact"]:hover {
-  color: #61c454;
 }
 
 @media (max-width: 480px) {
@@ -130,22 +113,6 @@
 
   .nav ul.active { /* Use flex also on screens > than 400px */
     display: flex;
-  }
-
-  .line.red {
-    transform: translateY(15px); /* Move the red line closer to the yellow line */
-    border-radius: 10px
-  }
-
-  .line.yellow {
-    transform: translateY(0px); /* Move the yellow line closer to the green line */
-    margin-top: 0;
-    border-radius: 10px
-  }
-
-  .line.green {
-    transform: translateY(-15px); /* Move the green line closer to the yellow line */
-    border-radius: 10px
   }
 
   .nav ul li {
