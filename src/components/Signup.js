@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { auth } from './firebase';
+import { auth, googleProvider } from './firebase';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
 import '../styles/Signup.css';
 
 const Signup = () => {
@@ -42,11 +42,10 @@ const Signup = () => {
                     setError(error.message); // Set error message for other errors
                     break;
             }
-            setIsEmailEntered(true); // Ensure this is set to true to trigger the re-render
+            setIsEmailEntered(true);
         }
     };
 
-    // Function to handle user login
     const handleLogin = async () => {
         try {
             await signInWithEmailAndPassword(auth, email, password); // Attempt to sign in with email and password
@@ -59,7 +58,6 @@ const Signup = () => {
         }
     };
 
-    // Function to handle user signup
     const handleSignup = async () => {
         try {
             await createUserWithEmailAndPassword(auth, email, password); // Attempt to create a new user with email and password
@@ -85,6 +83,29 @@ const Signup = () => {
                     setError(error.message); // Set error message for other errors
                     break;
             }
+            setSuccess(''); // Clear any previous success messages
+        }
+    };
+
+    const handleGoogleSignIn = async () => {
+        try {
+            await signInWithPopup(auth, googleProvider); // Sign in with Google
+            setSuccess('Logged in with Google successfully!'); // Set success message
+            setError(''); // Clear any previous errors
+            navigate('/homepage'); // Redirect to homepage
+        } catch (error) {
+            setError(error.message); // Set error message
+            setSuccess(''); // Clear any previous success messages
+        }
+    };
+
+    const handlePasswordReset = async () => {
+        try {
+            await sendPasswordResetEmail(auth, email); // Send password reset email
+            setSuccess('Password reset email sent!'); // Set success message
+            setError(''); // Clear any previous errors
+        } catch (error) {
+            setError(error.message); // Set error message
             setSuccess(''); // Clear any previous success messages
         }
     };
@@ -117,6 +138,7 @@ const Signup = () => {
                                     className="input"
                                 />
                                 <button onClick={handleLogin} className="button">Log In</button>
+                                <button onClick={handlePasswordReset} className="button">Forgot Password?</button>
                             </>
                         ) : (
                             <>
@@ -132,6 +154,7 @@ const Signup = () => {
                         )}
                     </>
                 )}
+                <button onClick={handleGoogleSignIn} className="button google-signin">Sign In with Google</button>
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}
             </div>
