@@ -6,16 +6,20 @@ import Profile from './components/Profile';
 import Geolocation from './components/Geolocation';
 import Messaging from './components/Messaging';
 import Events from './components/Events';
+import Home from './components/Home';
+import './App.css';
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/auth" component={<Auth />} />
-        <Route path="/profile" component={<Profile />} />
-        <Route path="/geolocation" component={<Geolocation />} />
-        <Route path="/messaging" component={<Messaging />} />
-        <Route path="/events" component={<Events />} />
+        {/* Use element prop and pass the component as JSX */}
+        <Route path="/" element={<Home />} /> {/* Add Home route */}
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/geolocation" element={<Geolocation />} />
+        <Route path="/messaging" element={<Messaging />} />
+        <Route path="/events" element={<Events />} />
       </Routes>
     </Router>
   );
