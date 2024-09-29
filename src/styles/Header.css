@@ -1,0 +1,167 @@
+/* src/styles/Header.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; /* Adjust padding for pill shape */
+  background-color: rgba(242, 242, 242, 0.8); /* Semi-transparent background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 80%; /* Use a percentage width */
+  max-width: 800px; /* Set a max-width to ensure it doesn't get too wide */
+  top: 20px; /* Adjust top position */
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50px; /* Pill shape */
+  z-index: 1000;
+  margin: 0 auto; /* Center the header */
+}
+
+.line {
+  width: 30px;
+  height: 1.5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo-button {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul li {
+  margin-left: 20px;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul li {
+  margin-left: 20px;
+}
+
+/* CSS */
+.header .nav ul li button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #333;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.2em 0.45em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  border-radius: 50px; /* Added for pill shape */
+}
+
+.header .nav ul li button:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 2px;
+  left: 3px;
+}
+
+@media (min-width: 768px) {
+  .header .nav ul li button {
+    padding: 0.2em 0.7em;
+  }
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav ul li a[href="#about"]:hover {
+  color: #ee695e;
+}
+
+.nav ul li a[href="#projects"]:hover {
+  color: #f5bd4f;
+}
+
+.nav ul li a[href="#contact"]:hover {
+  color: #61c454;
+}
+
+@media (max-width: 480px) {
+  .nav ul { /* Adjust the flex to fit small screens */
+    flex-direction: column;
+    display: flex;
+    margin: -30px;
+  }
+
+  .nav ul.active { /* Use flex also on screens > than 400px */
+    display: flex;
+  }
+
+  .line.red {
+    transform: translateY(15px); /* Move the red line closer to the yellow line */
+    border-radius: 10px
+  }
+
+  .line.yellow {
+    transform: translateY(0px); /* Move the yellow line closer to the green line */
+    margin-top: 0;
+    border-radius: 10px
+  }
+
+  .line.green {
+    transform: translateY(-15px); /* Move the green line closer to the yellow line */
+    border-radius: 10px
+  }
+
+  .nav ul li {
+    transform: translate(-60%, -40%);
+  }
+
+  .line {
+    height: 5px; /* Increase height when stacked vertically */
+  }
+
+  .nav ul li a {
+    font-size: 0; /* Hide the text */
+  }
+  
+}
+
+.header nav ul {
+  justify-content: space-between;
+}
