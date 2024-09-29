@@ -13,11 +13,13 @@ const Header = () => {
 			<nav className="nav">
 				<ul>
 					<li>
-						<button onClick={() => navigate('/login')}>Login</button>
+						<button onClick={() => navigate('/signup')}>Login</button>
 					</li>
+					{/*
 					<li>
-						<button onClick={() => navigate('/signup')}>SignUp</button>
+						<button onClick={() => navigate('/signup')}>Get Started</button>
 					</li>
+					*/}
 				</ul>
 			</nav>
 		</header>

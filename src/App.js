@@ -7,6 +7,7 @@ import Geolocation from './components/Geolocation';
 import Messaging from './components/Messaging';
 import Events from './components/Events';
 import Home from './components/Home';
+import Signup from './components/Signup';
 import './App.css';
 
 const App = () => {
@@ -14,7 +15,8 @@ const App = () => {
     <Router>
       <Routes>
         {/* Use element prop and pass the component as JSX */}
-        <Route path="/" element={<Home />} /> {/* Add Home route */}
+        <Route path="/" element={<Home />} /> {/* Home route */}
+        <Route path="/signup" element={<Signup />} /> {/* Signup route */}
         <Route path="/auth" element={<Auth />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/geolocation" element={<Geolocation />} />

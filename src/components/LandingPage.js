@@ -1,21 +1,16 @@
-//import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/LandingPage.css';
 
 const LandingPage = () => {
 	
-	const handleScroll = () => {
-		const projectsSection = document.getElementById('projects');
-		if (projectsSection) {
-			projectsSection.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
+const navigate = useNavigate();
 
 	return (
 		<div className="landing-about-wrapper">
 			<section id="landing-page" className="landing-page">
 				<h1>Welcome to Founders</h1>
 				<p>Where Startup Journeys Meet.</p>
-				<button onClick={handleScroll} className="cta-button">Start Your Journey</button>
+				<button onClick={() => navigate('/signup')} className="cta-button">Start Your Journey</button>
 			</section>
 		</div>
 	);
