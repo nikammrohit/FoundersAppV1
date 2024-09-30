@@ -15,7 +15,6 @@ body {
 .landing-about-wrapper {
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
   background-color: #e0e0e0; /* Light background color */
   box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
 }

@@ -7,6 +7,7 @@ footer {
 	text-align: left;
 	width: 100%;
 	bottom: 0;
+	box-sizing: border-box; /* Include padding in the element's total width and height */
 	padding-left: 2rem; /* Add padding to the left */
 	border-radius: 10px; /* Rounded corners */
 	z-index: 1; /* Ensure footer is above pseudo-elements */
@@ -25,15 +26,21 @@ footer {
 	background-color: #222; /* Same background color */
 	border-radius: 10px; /* Match the border radius of the footer */
 	z-index: -1; /* Ensure pseudo-elements are behind the footer */
+	box-shadow: inset 7px 7px 15px rgba(0, 0, 0, 0.5), inset -7px -7px 15px rgba(255, 255, 255, 0.1); /* Inset shadows */
+}
+  
+footer::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: #444; /* Darker background color for the top wall */
+	border-top-left-radius: 10px; /* Match the border radius of the footer */
+	border-top-right-radius: 10px; /* Match the border radius of the footer */
+	z-index: -1; /* Ensure pseudo-element is behind the footer */
   }
   
-  footer::before {
-	box-shadow: inset 7px 7px 15px rgba(0, 0, 0, 0.5), inset -7px -7px 15px rgba(255, 255, 255, 0.1); /* Inset shadows */
-  }
-  
-  footer::after {
-	box-shadow: inset 7px 7px 15px rgba(0, 0, 0, 0.5), inset -7px -7px 15px rgba(255, 255, 255, 0.1); /* Inset shadows */
-  }
   
   footer p {
 	margin: 0.5rem 0;
@@ -58,6 +65,6 @@ footer {
   }
   
   .local-time {
-	margin-right: 4em;
+	margin-right: 1em;
 	color: #555;
   }
