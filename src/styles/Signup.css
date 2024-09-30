@@ -53,7 +53,7 @@ h2 {
     border: none;
     background-color: #333; /* Light background color */
     font-size: 1rem;
-    color: #e0e0e0;
+    color: #bebebe;
     cursor: pointer;
     margin-top: 20px;
     box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
