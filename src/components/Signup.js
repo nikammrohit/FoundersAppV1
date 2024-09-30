@@ -154,7 +154,7 @@ const Signup = () => {
                         )}
                     </>
                 )}
-                <button onClick={handleGoogleSignIn} className="button google-signin">Sign In with Google</button>
+                <button onClick={handleGoogleSignIn} className="button google-signin">Continue with Google</button>
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}
             </div>
