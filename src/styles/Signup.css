@@ -3,59 +3,86 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #fff;
+    background-color: #e0e0e0; /* Light background color */
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 20px; /* Larger border radius for a softer look */
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
 }
 
+/* Neumorphic container styling */
 .container {
     max-width: 400px;
     width: 100%;
-    background-color: #fff;
+    background-color: #e0e0e0; /* Light background color */
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
     text-align: center;
 }
 
 h2 {
-    margin-bottom: 20px;
     color: #333;
+    text-shadow: 1px 1px 2px #bebebe, -1px -1px 2px #ffffff; /* Neumorphic shadows */
 }
 
+/* Neumorphic input styling */
 .input {
-    width: 100%; /* Adjust width to be less than 100% */
+    width: 100%;
     padding: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    border-radius: 10px; /* Slightly larger border radius for a softer look */
+    border: none; /* Remove border */
+    font-size: 1rem;
+    color: #333;
+    text-shadow: 1px 1px 2px #bebebe, -1px -1px 2px #ffffff; /* Neumorphic shadows */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    background-color: #e0e0e0; /* Light background color */
+    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Neumorphic shadows */
+    transition: box-shadow 0.3s ease;
 }
 
+.input:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff, 0 0 0 3px rgba(0, 123, 255, 0.5); /* Add focus ring */
+}
+
+/* Neumorphic button styling */
 .button {
     width: 100%;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 10px; /* Slightly larger border radius for a softer look */
     border: none;
-    background-color: #333;
+    background-color: #e0e0e0; /* Light background color */
     font-size: 1rem;
-    color: #ffffff;
-    font-size: 16px;
+    color: #333;
     cursor: pointer;
     margin-top: 20px;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .button:hover {
-    background-color: #222;
+    background-color: #d1d1d1; /* Slightly darker background on hover */
 }
 
+.button:active {
+    transform: scale(0.95); /* Shrink the button */
+    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
+}
+
+/* Google sign-in button styling */
 .google-signin {
     background-color: #db4437;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .google-signin:hover {
     background-color: #c33d2e;
+}
+
+.google-signin:active {
+    transform: scale(0.95); /* Shrink the button */
+    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
 }
 
 .error {
