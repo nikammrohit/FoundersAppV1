@@ -15,7 +15,7 @@ const Footer = () => {
 	return (
 		<footer className="footer">
 			<div className="footer-content">
-				<span>© 2024 Rohit Nikam. All rights reserved.</span>
+				<span>© 2024 Founders. All rights reserved.</span>
 				<span className="local-time">Local Time: {localTime}</span>
 			</div>
 		</footer>
