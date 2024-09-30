@@ -9,15 +9,15 @@ html, body {
 body {
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
   color: #333;
 }
 
 .landing-about-wrapper {
-  background-color: #ffffff;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  background-color: #f2f2f2cc; /* Semi-transparent background */
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
 }
 
 .landing-page {
@@ -28,42 +28,76 @@ body {
   height: 100vh;
   text-align: center;
   padding: 20px;
+  background-color: #f2f2f2cc !important; /* Light background color */
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff !important; /* Neumorphic shadows */
+  border-radius: 20px !important; /* Larger border radius for a softer look */
 }
 
 .landing-page h1 {
   font-size: 3rem;
   margin-bottom: 20px;
   color: #333;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(255, 255, 255, 0.7); /* Neumorphic shadows */
 }
 
 .landing-page p {
   font-size: 1.25rem;
   margin-bottom: 30px;
   color: #666;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(255, 255, 255, 0.7); /* Neumorphic shadows */
 }
 
 .cta-button {
   display: inline-block;
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: #ffffff;
-  background-color: #333;
-  text-shadow: 0 0 20px #fff, 0 0 1px #fff, 0 0 1px #fff;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  padding: 13px 23px;
+  font-size: 1.2rem;
+  font-weight:bold;
+  color: #e0e0e0;
+  background-color: #e0e0e0; /* Light background color */
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   text-decoration: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Inset layer for button */
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 5px; /* Set padding for the inset effect */
+  background-color: #333; /* Same background color */
+  box-shadow: inset 7px 7px 15px #111, inset -7px -7px 15px #555; /* Inset shadows for recessed effect */
+  border-radius: 8px; /* Match the border radius of the button */
+  z-index: -1;
+}
+
+/* Ensure text is on top */
+.cta-button::after {
+  content: attr(data-text); /* Use data attribute to display text */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: inherit; /* Inherit color from button */
+  z-index: 2; /* Ensure the text is above everything */
+  pointer-events: none; /* Allow clicks to pass through */
 }
 
 .cta-button:hover {
-  background-color: #222;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+  background-color: #d1d1d1; /* Slightly darker background on hover */
 }
 
 .cta-button:active {
   transform: scale(0.95); /* Shrink the button */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.8); /* Create sinking-in effect */
+  box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
 }
 
 .landing-page h1 span {

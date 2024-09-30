@@ -1,35 +1,63 @@
 footer {
+	position: relative;
 	padding: 1rem;
-	background-color: #0b0b0b;
-	color: #3b3b3b;
+	background-color: #222; /* Dark background color */
+	color: #555;
+	box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
 	text-align: left;
 	width: 100%;
 	bottom: 0;
 	padding-left: 2rem; /* Add padding to the left */
-}
+	border-radius: 10px; /* Rounded corners */
+	z-index: 1; /* Ensure footer is above pseudo-elements */
+	overflow: hidden; /* Hide overflow of pseudo-elements */
+  }
+  
 
-footer p {
+  footer::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 5px; /* Set padding for the inset effect */
+	background-color: #222; /* Same background color */
+	border-radius: 10px; /* Match the border radius of the footer */
+	z-index: -1; /* Ensure pseudo-elements are behind the footer */
+  }
+  
+  footer::before {
+	box-shadow: inset 7px 7px 15px rgba(0, 0, 0, 0.5), inset -7px -7px 15px rgba(255, 255, 255, 0.1); /* Inset shadows */
+  }
+  
+  footer::after {
+	box-shadow: inset 7px 7px 15px rgba(0, 0, 0, 0.5), inset -7px -7px 15px rgba(255, 255, 255, 0.1); /* Inset shadows */
+  }
+  
+  footer p {
 	margin: 0.5rem 0;
 	padding-left: 2rem; /* Add padding to the left */
-}
-
-footer a {
-	color: #007bff;
+	color: #555;
+  }
+  
+  footer a {
 	text-decoration: none;
 	transition: color 0.3s ease;
 	padding-left: 2rem; /* Add padding to the left */
-}
-
-footer a:hover {
+  }
+  
+  footer a:hover {
 	color: #0056b3;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
+  }
+  
+  .footer-content {
+	display: flex;
+	justify-content: space-between;
 	width: 100%;
-}
-
-.local-time {
-    margin-right: 4em;
-}
+  }
+  
+  .local-time {
+	margin-right: 4em;
+	color: #555;
+  }

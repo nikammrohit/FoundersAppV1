@@ -5,8 +5,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px; /* Adjust padding for pill shape */
-  background-color: rgba(242, 242, 242, 0.8); /* Semi-transparent background */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f2f2f2cc; /* Semi-transparent background */
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
   position: fixed;
   width: 80%; /* Use a percentage width */
   max-width: 800px; /* Set a max-width to ensure it doesn't get too wide */
