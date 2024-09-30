@@ -61,7 +61,7 @@ h2 {
 }
 
 .button:hover {
-    background-color: #d1d1d1; /* Slightly darker background on hover */
+    background-color: #222; /* Slightly darker background on hover */
 }
 
 .button:active {
