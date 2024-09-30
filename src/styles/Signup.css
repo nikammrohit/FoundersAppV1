@@ -51,9 +51,9 @@ h2 {
     padding: 15px;
     border-radius: 10px; /* Slightly larger border radius for a softer look */
     border: none;
-    background-color: #e0e0e0; /* Light background color */
+    background-color: #333; /* Light background color */
     font-size: 1rem;
-    color: #333;
+    color: #bebebe;
     cursor: pointer;
     margin-top: 20px;
     box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
@@ -71,6 +71,7 @@ h2 {
 
 /* Google sign-in button styling */
 .google-signin {
+    color: #333;
     background-color: #db4437;
     box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
