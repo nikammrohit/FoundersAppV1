@@ -14,91 +14,97 @@ html, body {
 
 /* src/styles/Homepage.css */
 .user-profile-button {
-    position: absolute;
-    top: 30px;
-    left: 20px;
-    width: 50px; /* Set width */
-    height: 50px; /* Set height */
-    font-size: 1rem;
-    font-weight: bold;
-    color: #333;
-    background-color: #e0e0e0; /* Light background color */
-    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
-    border: none;
-    border-radius: 50%; /* Make it a circle */
-    text-decoration: none;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  width: 50px; /* Set width */
+  height: 50px; /* Set height */
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  background-color: #e0e0e0; /* Light background color */
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
+  border: none;
+  border-radius: 50%; /* Make it a circle */
+  text-decoration: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.headerTitle{
+  text-align: center;
+}
+  
+.user-profile-button:hover {
+  background-color: #d1d1d1; /* Slightly darker background on hover */
+}
+  
+.user-profile-button:active {
+  transform: scale(0.95); /* Shrink the button */
+  box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
   }
 
-  .headerTitle{
-    text-align: center;
-  }
-  
-  .user-profile-button:hover {
-    background-color: #d1d1d1; /* Slightly darker background on hover */
-  }
-  
-  .user-profile-button:active {
-    transform: scale(0.95); /* Shrink the button */
-    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
-  }
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 
-  .search-bar-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  width: 100%; /* Make the container take full width */
+  padding: 0 20px; /* Add padding for better spacing */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
 }
 
 .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%; /* Make the search bar take full width */
+  max-width: 600px; /* Set a maximum width for larger screens */
 }
 
 .input {
-    width: 300px; /* Increase width */
-    height: 50px; /* Increase height */
-    padding: 10px;
-    margin: 10px 0;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
-    outline: none;
-    transition: box-shadow 0.3s ease;
+  flex: 1;
+  height: 50px; /* Increase height */
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
+  outline: none;
+  transition: box-shadow 0.3s ease;
 }
 
 .input:focus {
-    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for focused effect */
+  box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for focused effect */
 }
 
 .search-button {
-    width: 50px; /* Match the height of the input */
-    height: 50px; /* Match the height of the input */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 50%; /* Make it a circle */
-    background-color: #e0e0e0;
-    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 50px; /* Match the height of the input */
+  height: 50px; /* Match the height of the input */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%; /* Make it a circle */
+  background-color: #e0e0e0;
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .search-button:hover {
-    background-color: #d1d1d1; /* Slightly darker background on hover */
+  background-color: #d1d1d1; /* Slightly darker background on hover */
 }
 
 .search-button:active {
-    transform: scale(0.95); /* Shrink the button */
-    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
+  transform: scale(0.95); /* Shrink the button */
+  box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
 }
 
 .search-icon {
-    font-size: 1.1rem; /* Increase the font size of the search icon */
+  font-size: 1.1rem; /* Increase the font size of the search icon */
 }

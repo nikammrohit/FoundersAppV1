@@ -78,7 +78,6 @@ const Homepage = () => {
   return (
     <div className='background'>
       <div className="search-bar-container">
-        
         <div className="search-bar">
           <input
             type="text"
