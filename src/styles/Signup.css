@@ -66,7 +66,7 @@ h2 {
 
 .button:active {
     transform: scale(0.95); /* Shrink the button */
-    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
+    box-shadow: inset 7px 7px 15px #111, inset -7px -7px 15px #555; /* Inset shadows for pressed effect */
 }
 
 /* Google sign-in button styling */
@@ -83,7 +83,7 @@ h2 {
 
 .google-signin:active {
     transform: scale(0.95); /* Shrink the button */
-    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
+    box-shadow: inset 7px 7px 15px #b2372b, inset -7px -7px 15px #ff5040; /* Inset shadows for pressed effect */
 }
 
 .error {

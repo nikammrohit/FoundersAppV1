@@ -1,48 +1,115 @@
-// src/components/Profile.js
-// Import React and hooks
-import React, { useState, useEffect } from 'react';
-// Import firestore and auth objects from firebase.js
-import { firestore, auth } from './firebase';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate} from 'react-router-dom';
+import { firestore } from './firebase';
+import {collection, doc, getDoc, updateDoc} from 'firebase/firestore';
 
 const Profile = () => {
-  // State variable for storing profile data
-  const [profile, setProfile] = useState({});
+  const { userId } = useParams(); // Get userId from route parameters
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+  const [newBio, setNewBio] = useState('');
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    // Fetch user's profile from Firestore on component mount
-    const fetchProfile = async () => {
-      const user = auth.currentUser;
-      if (user) {
-        // Get reference to user's profile document
-        const profileRef = firestore.collection('profiles').doc(user.uid);
-        // Fetch profile document
-        const doc = await profileRef.get();
-        if (doc.exists) {
-          // Update profile state with fetched data
-          setProfile(doc.data());
-        }
+  const fetchProfile = async (userId) => {
+    try {
+      console.log('Fetching profile for userId:', userId); // Debugging statement
+      const profileRef = doc(collection(firestore, 'profiles'), userId);
+      const profileDoc = await getDoc(profileRef);
+      if (profileDoc.exists()) {
+        console.log('Profile data:', profileDoc.data()); // Debugging statement
+        setProfile(profileDoc.data());
+        setNewBio(profileDoc.data().bio || ''); // Set the bio in the input field
+      } else {
+        console.log('No such document!');
       }
-    };
-    fetchProfile();
-  }, []);
-
-  // Function to update user's profile in Firestore
-  const updateProfile = () => {
-    const user = auth.currentUser;
-    if (user) {
-      // Set profile document with updated data
-      firestore.collection('profiles').doc(user.uid).set(profile);
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const updateBio = async () => {
+    try {
+      const profileRef = doc(collection(firestore, 'profiles'), userId);
+      await updateDoc(profileRef, { bio: newBio });
+      setProfile((prevProfile) => ({ ...prevProfile, bio: newBio }));
+      setIsEditing(false);
+    } catch (error) {
+      console.error('Error updating bio:', error);
+    }
+  };
+
+  const handleProfilePictureClick = () => {
+    document.getElementById('profilePictureInput').click();
+  };
+
+  const handleProfilePictureChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64String = reader.result;
+        const profileRef = doc(collection(firestore, 'profiles'), userId);
+        await updateDoc(profileRef, { profilePictureUrl: base64String });
+        setProfile((prevProfile) => ({ ...prevProfile, profilePictureUrl: base64String }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    if (userId) {
+      fetchProfile(userId);
+    }
+  }, [userId]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!profile) {
+    return <div>No profile found.</div>;
+  }
+
   return (
     <div>
-      {/* Input field for profile name */}
-      <input type="text" value={profile.name || ''} onChange={(e) => setProfile({ ...profile, name: e.target.value })} placeholder="Name" />
-      {/* Input field for profile startup */}
-      <input type="text" value={profile.startup || ''} onChange={(e) => setProfile({ ...profile, startup: e.target.value })} placeholder="Startup" />
-      {/* Button to update profile */}
-      <button onClick={updateProfile}>Update Profile</button>
+      <h1>{profile.name}</h1>
+      <button onClick={() => navigate('/profile-settings')}>Edit Profile</button>
+      <p>{profile.username}</p>
+      <p>Email: {profile.email}</p>
+      <img
+        src={profile.profilePictureUrl}
+        alt="Profile"
+        onClick={handleProfilePictureClick}
+        style={{ cursor: 'pointer' }}
+      />
+      <input
+        type="file"
+        id="profilePictureInput"
+        style={{ display: 'none' }}
+        onChange={handleProfilePictureChange}
+      />
+
+      <div>
+        <p>
+          Bio: {profile.bio} 
+          <button onClick={() => setIsEditing(true)}>Edit</button>
+        </p>
+        {isEditing && (
+          <div>
+            <input
+              type="text"
+              value={newBio}
+              onChange={(e) => setNewBio(e.target.value)}
+            />
+            <button onClick={updateBio}>Save</button>
+            <button onClick={() => setIsEditing(false)}>Cancel</button>
+          </div>
+        )}
+      </div>
+      
     </div>
   );
 };

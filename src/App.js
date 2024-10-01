@@ -8,6 +8,7 @@ import Messaging from './components/Messaging';
 import Events from './components/Events';
 import Home from './components/Home';
 import Signup from './components/Signup';
+import ProfileSettings from './components/ProfileSettings';
 import './App.css';
 import Homepage from './components/Homepage';
 
@@ -20,10 +21,11 @@ const App = () => {
         <Route path="/signup" element={<Signup />} /> {/* Signup route */}
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/geolocation" element={<Geolocation />} />
         <Route path="/messaging" element={<Messaging />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/profile-settings" element={<ProfileSettings />} />
       </Routes>
     </Router>
   );
