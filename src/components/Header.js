@@ -15,11 +15,6 @@ const Header = () => {
 					<li>
 						<button onClick={() => navigate('/signup')}>Login</button>
 					</li>
-					{/*
-					<li>
-						<button onClick={() => navigate('/signup')}>Get Started</button>
-					</li>
-					*/}
 				</ul>
 			</nav>
 		</header>

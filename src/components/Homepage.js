@@ -5,6 +5,7 @@ import { collection, query, where, doc, getDoc, getDocs } from 'firebase/firesto
 import { onAuthStateChanged } from 'firebase/auth';
 import '../styles/Homepage.css';
 import Footer from './Footer'; // Import the Footer component
+import { FaSearch } from 'react-icons/fa'; // Import Font Awesome search icon
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -57,6 +58,12 @@ const Homepage = () => {
     }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -70,15 +77,21 @@ const Homepage = () => {
 
   return (
     <div className='background'>
-
-      <div className="search-bar">
-        <input
-          type="text"
-          value={searchUsername}
-          onChange={(e) => setSearchUsername(e.target.value)}
-          placeholder="Search by username"
-        />
-        <button onClick={handleSearch}>Search</button>
+      <div className="search-bar-container">
+        
+        <div className="search-bar">
+          <input
+            type="text"
+            value={searchUsername}
+            onChange={(e) => setSearchUsername(e.target.value)}
+            placeholder="Search by username"
+            className="input"
+            onKeyDown={handleKeyDown} // Add this line
+          />
+          <button onClick={handleSearch} className="search-button">
+            <FaSearch className="search-icon" />
+          </button>
+        </div>
       </div>
 
       <button onClick={handleProfileClick} className="user-profile-button">
@@ -100,7 +113,7 @@ const Homepage = () => {
       )}
 
       {error && <p className="error">{error}</p>}
-      
+
       <Footer />
     </div>
   );
