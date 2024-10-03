@@ -10,7 +10,7 @@
   position: fixed;
   width: 80%; /* Use a percentage width */
   max-width: 800px; /* Set a max-width to ensure it doesn't get too wide */
-  top: 20px; /* Adjust top position */
+  top: 40px; /* Adjust top position */
   left: 50%;
   transform: translateX(-50%);
   border-radius: 50px; /* Pill shape */
@@ -78,7 +78,7 @@
   display: inline-block;
   padding: 10px 22px;
   font-size: 1rem;
-  color: #bebebe; /* Light text color */
+  color: #333; /* Darker text color */
   font-weight: bold;
   background-color: #e0e0e0; /* Light background color */
   box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
@@ -90,32 +90,6 @@
   overflow: hidden;
   z-index: 1;
   
-}
-
-/* Inset layer for button */
-.header .nav ul li button::before {
-  content: '';
-  position: absolute;
-  top: 5px; /* Set padding for the inset effect */
-  left: 5px; /* Set padding for the inset effect */
-  right: 5px; /* Set padding for the inset effect */
-  bottom: 5px; /* Set padding for the inset effect */
-  background-color: #333; /* Same background color */
-  box-shadow: inset 7px 7px 15px #111, inset -7px -7px 15px #555; /* Inset shadows for recessed effect */
-  border-radius: 50px; /* Match the border radius of the button */
-  z-index: -1;
-}
-
-/* Ensure text is on top */
-.header .nav ul li button::after {
-  content: attr(data-text); /* Use data attribute to display text */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: inherit; /* Inherit color from button */
-  z-index: 2; /* Ensure the text is above everything */
-  pointer-events: none; /* Allow clicks to pass through */
 }
 
 /* Hover and active states */

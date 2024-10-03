@@ -30,6 +30,7 @@ body {
   background-color: #e0e0e0 !important; /* Light background color */
   box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff !important; /* Neumorphic shadows */
   border-radius: 20px !important; /* Larger border radius for a softer look */
+  margin-top: -60px; /* Move the landing-page up by 20px */
 }
 
 .landing-page h1 {
@@ -41,6 +42,7 @@ body {
 
 .landing-page p {
   font-size: 1.25rem;
+  margin-top: 5px; /* Add space between the heading and the paragraph */
   margin-bottom: 30px;
   color: #666;
   text-shadow: 1px 1px 2px #bebebe, -1px -1px 2px #ffffff; /* Neumorphic shadows */
@@ -51,7 +53,7 @@ body {
   padding: 13px 23px;
   font-size: 1.2rem;
   font-weight:bold;
-  color: #bebebe;
+  color: #333;
   background-color: #e0e0e0; /* Light background color */
   box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
   border: none;
@@ -60,34 +62,7 @@ body {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
-  z-index: 1;
-}
-
-/* Inset layer for button */
-.cta-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 5px; /* Set padding for the inset effect */
-  background-color: #333; /* Same background color */
-  box-shadow: inset 7px 7px 15px #111, inset -7px -7px 15px #555; /* Inset shadows for recessed effect */
-  border-radius: 8px; /* Match the border radius of the button */
-  z-index: -1;
-}
-
-/* Ensure text is on top */
-.cta-button::after {
-  content: attr(data-text); /* Use data attribute to display text */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: inherit; /* Inherit color from button */
-  z-index: 2; /* Ensure the text is above everything */
-  pointer-events: none; /* Allow clicks to pass through */
+  margin-top: 40px; /* Add space between the paragraph and the button */
 }
 
 .cta-button:hover {
