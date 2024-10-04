@@ -8,9 +8,11 @@ const navigate = useNavigate();
 	return (
 		<div className="landing-about-wrapper">
 			<section id="landing-page" className="landing-page">
-				<h1>Welcome to Founders</h1>
-				<p>Where Startup Journeys Meet.</p>
-				<button onClick={() => navigate('/signup')} className="cta-button">Start Your Journey</button>
+				<div className="landing-page-heading">
+					<h1>Welcome to Founders</h1>
+					<p>Where Startup Journeys Meet.</p>
+					<button onClick={() => navigate('/signup')} className="cta-button">Start Your Journey</button>
+				</div>
 			</section>
 		</div>
 	);

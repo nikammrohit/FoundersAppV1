@@ -30,7 +30,10 @@ body {
   background-color: #e0e0e0 !important; /* Light background color */
   box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff !important; /* Neumorphic shadows */
   border-radius: 20px !important; /* Larger border radius for a softer look */
-  margin-top: -60px; /* Move the landing-page up by 20px */
+}
+
+.landing-page-heading {
+  margin-top: -130px;
 }
 
 .landing-page h1 {
