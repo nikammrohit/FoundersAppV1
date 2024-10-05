@@ -12,8 +12,8 @@ const Homepage = () => {
   const [userId, setUserId] = useState(null);
   const [usernameInitial, setUsernameInitial] = useState('P');
 
-  const [searchUsername, setSearchUsername] = useState('');
-  const [searchedProfile, setSearchedProfile] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchedProfiles, setSearchedProfiles] = useState([]);
   const [error, setError] = useState('');
 
   const handleProfileClick = () => {
@@ -42,19 +42,32 @@ const Homepage = () => {
   const handleSearch = async () => {
     try {
       const profilesRef = collection(firestore, 'profiles');
-      const q = query(profilesRef, where('username', '==', searchUsername));
-      const querySnapshot = await getDocs(q);
-      if (!querySnapshot.empty) {
-        const profileDoc = querySnapshot.docs[0];
-        setSearchedProfile(profileDoc.data());
+      
+      // Query for username
+      const usernameQuery = query(profilesRef, where('username', '==', searchTerm));
+      const usernameSnapshot = await getDocs(usernameQuery);
+      
+      // Query for name
+      const nameQuery = query(profilesRef, where('name', '==', searchTerm));
+      const nameSnapshot = await getDocs(nameQuery);
+      
+      // Combine results
+      const profiles = [
+        ...usernameSnapshot.docs.map(doc => doc.data()),
+        ...nameSnapshot.docs.map(doc => doc.data())
+      ];
+    
+      if (profiles.length > 0) {
+        setSearchedProfiles(profiles);
         setError('');
       } else {
-        setSearchedProfile(null);
-        setError('No user found with that username.');
+        setSearchedProfiles([]);
+        setError('No user found with that username or name.');
       }
+
     } catch (error) {
-      console.error('Error searching profile:', error);
-      setError('Error searching profile.');
+      console.error('Error searching profiles:', error);
+      setError('Error searching profiles.');
     }
   };
 
@@ -81,9 +94,9 @@ const Homepage = () => {
         <div className="homepage-search-bar">
           <input
             type="text"
-            value={searchUsername}
-            onChange={(e) => setSearchUsername(e.target.value)}
-            placeholder="Search by username"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search for User"
             className="homepage-input"
             onKeyDown={handleKeyDown} // Add this line
           />
@@ -102,23 +115,27 @@ const Homepage = () => {
         <p>You are now logged in.</p>
       </div>
 
-      {searchedProfile && (
+      {searchedProfiles && searchedProfiles.length > 0 && (
         <div className="homepage-searched-profile">
-          {searchedProfile.profilePictureUrl ? (
-            <img
-              src={searchedProfile.profilePictureUrl}
-              alt="Profile"
-              className="homepage-profile-picture"
-            />
-          ) : (
-            <div className="homepage-profile-icon">
-              {searchedProfile.username.charAt(0).toUpperCase()}
+          {searchedProfiles.map((profile, index) => (
+            <div key={index} className="homepage-searched-profile">
+              {profile.profilePictureUrl ? (
+                <img
+                  src={profile.profilePictureUrl}
+                  alt="Profile"
+                  className="homepage-profile-picture"
+                />
+              ) : (
+                <div className="homepage-profile-icon">
+                  {profile.username.charAt(0).toUpperCase()}
+                </div>
+              )}
+              <div className="homepage-profile-info">
+                <h2>{profile.name}</h2>
+                <p className="homepage-username">@{profile.username}</p>
+              </div>
             </div>
-          )}
-          <div className="homepage-profile-info">
-            <h2>{searchedProfile.name}</h2>
-            <p className="homepage-username">@{searchedProfile.username}</p>
-          </div>
+          ))}
         </div>
       )}
       {error && <p className="homepage-error">{error}</p>}
