@@ -111,11 +111,6 @@ const Homepage = () => {
         {usernameInitial}
       </button>
 
-      <div className="homepage-headerTitle">
-        <h1>Welcome to the Homepage!</h1>
-        <p>You are now logged in.</p>
-      </div>
-
       {searchedProfiles && searchedProfiles.length > 0 && (
         <div className="homepage-searched-profile">
           {searchedProfiles.map((profile, index) => (
@@ -145,7 +140,10 @@ const Homepage = () => {
         </div>
       )}
       {error && <p className="homepage-error">{error}</p>}
-
+      <div className="homepage-headerTitle">
+        <h1>Welcome to the Homepage!</h1>
+        <p>You are now logged in.</p>
+      </div>
       <Footer />
     </div>
   );
