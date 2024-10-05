@@ -78,10 +78,15 @@ const Homepage = () => {
         setUserId(user.uid);
         fetchProfile(user.uid);
       } else {
-        console.log('No user is signed in.');
+        navigate('/login'); // Redirect to login if no user is signed in
       }
     });
-  }, []);
+  }, [navigate]);
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+    handleSearch();
+  };
 
   return (
     <div className='homepage-background'>
@@ -90,7 +95,8 @@ const Homepage = () => {
           <input
             type="text"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            /*onChange={(e) => setSearchTerm(e.target.value)}*/
+            onChange={handleInputChange}
             placeholder="Search for User"
             className="homepage-input"
             onKeyDown={handleKeyDown} // Add this line
