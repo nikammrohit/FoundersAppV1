@@ -98,6 +98,19 @@
     font-size: 1rem;
     color: #888;
   }
+
+  .message-button {
+    padding: 5px 10px;
+    background-color: #618eff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .message-button:hover {
+    background-color: #4c70cb;
+  }
   
   .profile-bio {
     margin-top: 20px;

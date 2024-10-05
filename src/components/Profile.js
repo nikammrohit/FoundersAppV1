@@ -99,7 +99,12 @@ const Profile = () => {
           {isOwner && (
             <button onClick={handleEditProfileClick} className="edit-profile-button">Edit Profile</button>
           )}
-          <p className="username">@{profile.username}</p>
+          <div className="profile-username-container">
+            <p className="username">@{profile.username}</p>
+            {!isOwner && (
+              <button className="message-button" onClick={() => navigate(`/message/${userId}`)}>Message</button>
+            )}
+          </div>
         </div>
       </div>
       <div className="profile-bio">
