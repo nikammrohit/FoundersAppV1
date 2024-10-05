@@ -42,20 +42,15 @@ const Homepage = () => {
   const handleSearch = async () => {
     try {
       const profilesRef = collection(firestore, 'profiles');
-      
-      // Query for username
-      const usernameQuery = query(profilesRef, where('username', '==', searchTerm));
-      const usernameSnapshot = await getDocs(usernameQuery);
-      
-      // Query for name
-      const nameQuery = query(profilesRef, where('name', '==', searchTerm));
-      const nameSnapshot = await getDocs(nameQuery);
-      
-      // Combine results
-      const profiles = [
-        ...usernameSnapshot.docs.map(doc => doc.data()),
-        ...nameSnapshot.docs.map(doc => doc.data())
-      ];
+      const querySnapshot = await getDocs(profilesRef);
+      const searchTermLower = searchTerm.toLowerCase();
+
+      const profiles = querySnapshot.docs
+        .map(doc => doc.data())
+        .filter(profile => 
+          profile.username.toLowerCase().includes(searchTermLower) ||
+          profile.name.toLowerCase().includes(searchTermLower)
+        );
     
       if (profiles.length > 0) {
         setSearchedProfiles(profiles);
