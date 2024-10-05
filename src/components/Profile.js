@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate} from 'react-router-dom';
-import { firestore } from './firebase';
+import { firestore, auth } from './firebase';
 import {collection, doc, getDoc, updateDoc} from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 import '../styles/Profile.css';
 
 const Profile = () => {
   const { userId } = useParams(); // Get userId from route parameters
   const [profile, setProfile] = useState(null);
+  const [isOwner, setIsOwner] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -51,10 +53,16 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    if (userId) {
-      fetchProfile(userId);
-    }
-  }, [userId]);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsOwner(user.uid === userId); // Check if the logged-in user is the owner of the profile
+        fetchProfile(userId);
+      } else {
+        console.log('No user is signed in.');
+        navigate('/login'); // Redirect to login if no user is signed in
+      }
+    });
+  }, [userId, navigate]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -88,7 +96,9 @@ const Profile = () => {
         />
         <div className="profile-info">
           <h1>{profile.name}</h1>
-          <button onClick={handleEditProfileClick} className="edit-profile-button">Edit Profile</button>
+          {isOwner && (
+            <button onClick={handleEditProfileClick} className="edit-profile-button">Edit Profile</button>
+          )}
           <p className="username">@{profile.username}</p>
         </div>
       </div>

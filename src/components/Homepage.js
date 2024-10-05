@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { firestore, auth } from './firebase'; // Ensure these are correctly imported
-import { collection, query, where, doc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import '../styles/Homepage.css';
 import Footer from './Footer'; // Import the Footer component
@@ -16,7 +16,7 @@ const Homepage = () => {
   const [searchedProfiles, setSearchedProfiles] = useState([]);
   const [error, setError] = useState('');
 
-  const handleProfileClick = () => {
+  const handleProfileClick = (userId) => {
     navigate(`/profile/${userId}`); // Redirect to the user's profile page
   };
 
@@ -46,7 +46,7 @@ const Homepage = () => {
       const searchTermLower = searchTerm.toLowerCase();
 
       const profiles = querySnapshot.docs
-        .map(doc => doc.data())
+        .map(doc => ({ id: doc.id, ...doc.data() })) // Include document ID
         .filter(profile => 
           profile.username.toLowerCase().includes(searchTermLower) ||
           profile.name.toLowerCase().includes(searchTermLower)
@@ -101,7 +101,7 @@ const Homepage = () => {
         </div>
       </div>
 
-      <button onClick={handleProfileClick} className="homepage-user-profile-button">
+      <button onClick={() => handleProfileClick(userId)} className="homepage-user-profile-button">
         {usernameInitial}
       </button>
 
@@ -113,7 +113,12 @@ const Homepage = () => {
       {searchedProfiles && searchedProfiles.length > 0 && (
         <div className="homepage-searched-profile">
           {searchedProfiles.map((profile, index) => (
-            <div key={index} className="homepage-searched-profile">
+            <div
+              key={index}
+              className="homepage-searched-profile"
+              onClick={() => handleProfileClick(profile.id)} // Add onClick handler
+              style={{ cursor: 'pointer' }} // Add cursor pointer style
+            >
               {profile.profilePictureUrl ? (
                 <img
                   src={profile.profilePictureUrl}
