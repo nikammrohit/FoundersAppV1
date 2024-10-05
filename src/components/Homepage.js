@@ -76,52 +76,52 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className='background'>
-      <div className="search-bar-container">
-        <div className="search-bar">
+    <div className='homepage-background'>
+      <div className="homepage-search-bar-container">
+        <div className="homepage-search-bar">
           <input
             type="text"
             value={searchUsername}
             onChange={(e) => setSearchUsername(e.target.value)}
             placeholder="Search by username"
-            className="input"
+            className="homepage-input"
             onKeyDown={handleKeyDown} // Add this line
           />
-          <button onClick={handleSearch} className="search-button">
-            <FaSearch className="search-icon" />
+          <button onClick={handleSearch} className="homepage-search-button">
+            <FaSearch className="homepage-search-icon" />
           </button>
         </div>
       </div>
 
-      <button onClick={handleProfileClick} className="user-profile-button">
+      <button onClick={handleProfileClick} className="homepage-user-profile-button">
         {usernameInitial}
       </button>
 
-      <div className="headerTitle">
+      <div className="homepage-headerTitle">
         <h1>Welcome to the Homepage!</h1>
         <p>You are now logged in.</p>
       </div>
 
       {searchedProfile && (
-        <div className="searched-profile">
+        <div className="homepage-searched-profile">
           {searchedProfile.profilePictureUrl ? (
             <img
               src={searchedProfile.profilePictureUrl}
               alt="Profile"
-              className="profile-picture"
+              className="homepage-profile-picture"
             />
           ) : (
-            <div className="profile-icon">
+            <div className="homepage-profile-icon">
               {searchedProfile.username.charAt(0).toUpperCase()}
             </div>
           )}
-          <div className="profile-info">
+          <div className="homepage-profile-info">
             <h2>{searchedProfile.name}</h2>
-            <p className="username">@{searchedProfile.username}</p>
+            <p className="homepage-username">@{searchedProfile.username}</p>
           </div>
         </div>
       )}
-      {error && <p className="error">{error}</p>}
+      {error && <p className="homepage-error">{error}</p>}
 
       <Footer />
     </div>

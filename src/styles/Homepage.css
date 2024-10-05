@@ -8,12 +8,13 @@ html, body {
   background-color: #e0e0e0; /* Set the background color */
 }
 
-.background {
+.homepage-background {
   background-color: #e0e0e0;
+
 }
 
 /* src/styles/Homepage.css */
-.user-profile-button {
+.homepage-user-profile-button {
   position: absolute;
   top: 30px;
   left: 20px;
@@ -34,30 +35,29 @@ html, body {
   z-index: 2;
 }
 
-.headerTitle{
+.homepage-headerTitle{
   text-align: center;
 }
   
-.user-profile-button:hover {
+.homepage-user-profile-button:hover {
   background-color: #d1d1d1; /* Slightly darker background on hover */
 }
   
-.user-profile-button:active {
+.homepage-user-profile-button:active {
   transform: scale(0.95); /* Shrink the button */
   box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
   }
 
-.search-bar-container {
+.homepage-search-bar-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-
   width: 100%; /* Make the container take full width */
   padding: 0 20px; /* Add padding for better spacing */
   box-sizing: border-box; /* Include padding in the element's total width and height */
 }
 
-.search-bar {
+.homepage-search-bar {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -65,24 +65,25 @@ html, body {
   max-width: 600px; /* Set a maximum width for larger screens */
 }
 
-.input {
+.homepage-input {
   flex: 1;
   height: 50px; /* Increase height */
-  padding: 10px;
+  padding: 10px 20px;
   margin: 10px 0;
   box-sizing: border-box;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
+  background-color: #e0e0e0; /* Neumorphic white background */
   box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
   outline: none;
   transition: box-shadow 0.3s ease;
 }
 
-.input:focus {
+.homepage-input:focus {
   box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for focused effect */
 }
 
-.search-button {
+.homepage-search-button {
   width: 50px; /* Match the height of the input */
   height: 50px; /* Match the height of the input */
   display: flex;
@@ -96,15 +97,57 @@ html, body {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.search-button:hover {
+.homepage-search-button:hover {
   background-color: #d1d1d1; /* Slightly darker background on hover */
 }
 
-.search-button:active {
+.homepage-search-button:active {
   transform: scale(0.95); /* Shrink the button */
   box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
 }
 
-.search-icon {
+.homepage-search-icon {
   font-size: 1.1rem; /* Increase the font size of the search icon */
+}
+
+/* src/styles/Homepage.css */
+.homepage-searched-profile {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+
+}
+
+.homepage-profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.homepage-profile-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.homepage-profile-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: -3px;
+}
+
+.homepage-username {
+  margin-top: -10px; /* Move up by 20px */
+}
+
+.homepage-error {
+  color: red;
+  margin-top: 10px;
 }
