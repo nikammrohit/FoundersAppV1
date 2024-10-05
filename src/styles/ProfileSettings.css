@@ -1,0 +1,57 @@
+/* src/styles/ProfileSettings.css */
+.profile-settings-container {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px; /* Add top margin */
+  padding: 20px;
+  background-color: #e0e0e0; /* Light background color */
+  border-radius: 20px;
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
+}
+.profile-info {
+  margin-top: 20px;
+}
+.profile-info p {
+  font-size: 1rem;
+  color: #333;
+}
+.bio-section {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.input-wrapper {
+  margin-right: 20px; /* Add right margin */
+  margin-top: 20px; /* Add top margin */
+}
+.bio-input,
+.name-input,
+.username-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Neumorphic shadows */
+  background-color: #e0e0e0; /* Light background color */
+  color: #333;
+  resize: none;
+}
+.save-bio-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #618eff; /* Dark red background color */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.save-bio-button:hover {
+  background-color: #4c70cb; /* Slightly darker red on hover */
+}
+.save-bio-button:active {
+  transform: scale(0.95); /* Shrink the button */
+  box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
+}

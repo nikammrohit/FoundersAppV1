@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/geolocation" element={<Geolocation />} />
         <Route path="/messaging" element={<Messaging />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/profile-settings" element={<ProfileSettings />} />
+        <Route path="/profile-settings/:userId" element={<ProfileSettings />} />
       </Routes>
     </Router>
   );

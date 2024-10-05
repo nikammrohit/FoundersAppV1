@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate} from 'react-router-dom';
 import { firestore } from './firebase';
 import {collection, doc, getDoc, updateDoc} from 'firebase/firestore';
+import '../styles/Profile.css';
 
 const Profile = () => {
   const { userId } = useParams(); // Get userId from route parameters
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isEditing, setIsEditing] = useState(false);
-  const [newBio, setNewBio] = useState('');
   const navigate = useNavigate();
 
   const fetchProfile = async (userId) => {
@@ -19,7 +18,6 @@ const Profile = () => {
       if (profileDoc.exists()) {
         console.log('Profile data:', profileDoc.data()); // Debugging statement
         setProfile(profileDoc.data());
-        setNewBio(profileDoc.data().bio || ''); // Set the bio in the input field
       } else {
         console.log('No such document!');
       }
@@ -27,17 +25,6 @@ const Profile = () => {
       console.error('Error fetching profile:', error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const updateBio = async () => {
-    try {
-      const profileRef = doc(collection(firestore, 'profiles'), userId);
-      await updateDoc(profileRef, { bio: newBio });
-      setProfile((prevProfile) => ({ ...prevProfile, bio: newBio }));
-      setIsEditing(false);
-    } catch (error) {
-      console.error('Error updating bio:', error);
     }
   };
 
@@ -59,6 +46,10 @@ const Profile = () => {
     }
   };
 
+  const handleEditProfileClick = () => {
+    navigate(`/profile-settings/${userId}`);
+  };
+
   useEffect(() => {
     if (userId) {
       fetchProfile(userId);
@@ -74,42 +65,38 @@ const Profile = () => {
   }
 
   return (
-    <div>
-      <h1>{profile.name}</h1>
-      <button onClick={() => navigate('/profile-settings')}>Edit Profile</button>
-      <p>{profile.username}</p>
-      <p>Email: {profile.email}</p>
-      <img
-        src={profile.profilePictureUrl}
-        alt="Profile"
-        onClick={handleProfilePictureClick}
-        style={{ cursor: 'pointer' }}
-      />
-      <input
-        type="file"
-        id="profilePictureInput"
-        style={{ display: 'none' }}
-        onChange={handleProfilePictureChange}
-      />
-
-      <div>
-        <p>
-          Bio: {profile.bio} 
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-        </p>
-        {isEditing && (
-          <div>
-            <input
-              type="text"
-              value={newBio}
-              onChange={(e) => setNewBio(e.target.value)}
-            />
-            <button onClick={updateBio}>Save</button>
-            <button onClick={() => setIsEditing(false)}>Cancel</button>
+    <div className="profile-container">
+      <button className="back-button" onClick={() => navigate('/homepage')}>&lt;</button>
+      <div className="profile-header">
+        {profile.profilePictureUrl ? (
+          <img
+            src={profile.profilePictureUrl}
+            alt="Profile"
+            className="profile-picture"
+            onClick={handleProfilePictureClick}
+          />
+        ) : (
+          <div className="profile-icon" onClick={handleProfilePictureClick}>
+            {profile.username.charAt(0).toUpperCase()}
           </div>
         )}
+        <input
+          type="file"
+          id="profilePictureInput"
+          style={{ display: 'none' }}
+          onChange={handleProfilePictureChange}
+        />
+        <div className="profile-info">
+          <h1>{profile.name}</h1>
+          <button onClick={handleEditProfileClick} className="edit-profile-button">Edit Profile</button>
+          <p className="username">@{profile.username}</p>
+        </div>
       </div>
-      
+      <div className="profile-bio">
+        <p>
+          {profile.bio}
+        </p>
+      </div>
     </div>
   );
 };

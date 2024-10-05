@@ -104,13 +104,23 @@ const Homepage = () => {
 
       {searchedProfile && (
         <div className="searched-profile">
-          <h2>Profile Found:</h2>
-          <p>Username: {searchedProfile.username}</p>
-          <p>Name: {searchedProfile.name}</p>
-          <p>Email: {searchedProfile.email}</p>
+          {searchedProfile.profilePictureUrl ? (
+            <img
+              src={searchedProfile.profilePictureUrl}
+              alt="Profile"
+              className="profile-picture"
+            />
+          ) : (
+            <div className="profile-icon">
+              {searchedProfile.username.charAt(0).toUpperCase()}
+            </div>
+          )}
+          <div className="profile-info">
+            <h2>{searchedProfile.name}</h2>
+            <p className="username">@{searchedProfile.username}</p>
+          </div>
         </div>
       )}
-
       {error && <p className="error">{error}</p>}
 
       <Footer />
