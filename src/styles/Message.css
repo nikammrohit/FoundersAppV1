@@ -1,0 +1,93 @@
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f3;
+    border-radius: 20px;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+    width: 100%;
+    max-width: 400px; /* Adjusted max-width to match Signup component */
+    margin: 0 auto;
+  }
+  
+  .message-header {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    background-color: #f0f0f3;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+  }
+  
+  .messages {
+    width: 100%;
+    max-height: 300px; /* Adjusted max-height to match Signup component */
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f0f0f3;
+    border-radius: 10px;
+    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff;
+  }
+  
+  .message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+  }
+  
+  .sent {
+    align-self: flex-end;
+    background-color: #618eff;
+    color: white;
+  }
+  
+  .received {
+    align-self: flex-start;
+    background-color: #e0e0e0;
+    color: #333;
+  }
+  
+  .message-input-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background-color: #f0f0f3;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+  }
+  
+  .message-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f0f0f3;
+    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff;
+    margin-right: 10px;
+  }
+  
+  .send-button {
+    padding: 10px 20px;
+    background-color: #618eff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+  }
+  
+  .send-button:hover {
+    background-color: #4c70cb;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }

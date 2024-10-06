@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { firestore } from './firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { firestore, auth } from './firebase';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import '../styles/Message.css';
 
 const Message = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // This is the userId of the user being messaged
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -27,14 +28,47 @@ const Message = () => {
       }
     };
 
+    const fetchCurrentUser = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        setCurrentUser(user);
+      }
+    };
+
     fetchMessages();
+    fetchCurrentUser();
   }, [id]);
 
   const handleSendMessage = async () => {
+    if (!currentUser) {
+      setError('No user is signed in.');
+      return;
+    }
+
     try {
       const docRef = doc(firestore, 'messages', id);
-      await setDoc(docRef, { messages: [...messages, message] }, { merge: true });
-      setMessages([...messages, message]);
+      const docSnap = await getDoc(docRef);
+
+      const newMessage = {
+        senderId: currentUser.uid,
+        text: message,
+        timestamp: new Date().toISOString(),
+        participants: [currentUser.uid, id] // Ensure participants field is set
+      };
+
+      if (docSnap.exists()) {
+        await updateDoc(docRef, {
+          messages: [...docSnap.data().messages, newMessage],
+          participants: [...new Set([...docSnap.data().participants, ...newMessage.participants])]
+        });
+      } else {
+        await setDoc(docRef, {
+          messages: [newMessage],
+          participants: newMessage.participants
+        });
+      }
+
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
       setMessage('');
     } catch (error) {
       setError('Error sending message');
@@ -44,19 +78,24 @@ const Message = () => {
 
   return (
     <div className="message-container">
-      <h1>Message User</h1>
+      <h1 className="message-header">Chat</h1>
       <div className="messages">
         {messages.map((msg, index) => (
-          <p key={index}>{msg}</p>
+          <div key={index} className={`message ${msg.senderId === currentUser?.uid ? 'sent' : 'received'}`}>
+            <p>{msg.text}</p>
+          </div>
         ))}
       </div>
-      <input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type your message"
-      />
-      <button onClick={handleSendMessage}>Send</button>
+      <div className="message-input-container">
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Type your message"
+          className="message-input"
+        />
+        <button onClick={handleSendMessage} className="send-button">Send</button>
+      </div>
       {error && <p className="error">{error}</p>}
     </div>
   );

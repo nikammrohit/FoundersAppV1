@@ -88,6 +88,10 @@ const Homepage = () => {
     handleSearch();
   };
 
+  const handleMessagesClick = () => {
+    navigate(`/message-log/${userId}`); // Redirect to the user's messages page
+  };
+
   return (
     <div className='homepage-background'>
       <div className="homepage-search-bar-container">
@@ -103,6 +107,9 @@ const Homepage = () => {
           />
           <button onClick={handleSearch} className="homepage-search-button">
             <FaSearch className="homepage-search-icon" />
+          </button>
+          <button onClick={handleMessagesClick} className="homepage-message-button">
+            <p className="homepage-message-icon">💬</p>
           </button>
         </div>
       </div>

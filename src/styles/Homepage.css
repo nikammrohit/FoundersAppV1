@@ -110,6 +110,33 @@ html, body {
   font-size: 1.1rem; /* Increase the font size of the search icon */
 }
 
+.homepage-message-button{
+  width: 50px; /* Match the height of the input */
+  height: 50px; /* Match the height of the input */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%; /* Make it a circle */
+  background-color: #e0e0e0;
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.homepage-message-button:hover {
+  background-color: #d1d1d1; /* Slightly darker background on hover */
+}
+
+.homepage-message-button:active {
+  transform: scale(0.95); /* Shrink the button */
+  box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff; /* Inset shadows for pressed effect */
+}
+
+.homepage-message-icon{
+  font-size: 1.4rem; /* Increase the font size of the search icon */
+}
+
 /* src/styles/Homepage.css */
 .homepage-searched-profile {
   margin: 20px;
