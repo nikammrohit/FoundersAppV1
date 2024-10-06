@@ -16,11 +16,12 @@ html, body {
 /* src/styles/Homepage.css */
 .homepage-user-profile-button {
   position: absolute;
+  margin-top: 20px; /* Add top margin */
   top: 30px;
-  left: 20px;
-  width: 50px; /* Set width */
-  height: 50px; /* Set height */
-  font-size: 1rem;
+  left: 30px;
+  width: 60px; /* Set width */
+  height: 60px; /* Set height */
+  font-size: 1.4rem;
   font-weight: bold;
   color: #333;
   background-color: #e0e0e0; /* Light background color */
@@ -60,17 +61,19 @@ html, body {
 .homepage-search-bar {
   display: flex;
   align-items: center;
-  gap: 10px;
+  margin-top: 20px; /* Add top margin */
+  gap: 15px;
   width: 100%; /* Make the search bar take full width */
   max-width: 600px; /* Set a maximum width for larger screens */
 }
 
 .homepage-input {
   flex: 1;
-  height: 50px; /* Increase height */
+  height: 60px; /* Increase height */
   padding: 10px 20px;
   margin: 10px 0;
   box-sizing: border-box;
+  font-size: large;
   border: none;
   border-radius: 50px;
   background-color: #e0e0e0; /* Neumorphic white background */
@@ -84,8 +87,8 @@ html, body {
 }
 
 .homepage-search-button {
-  width: 50px; /* Match the height of the input */
-  height: 50px; /* Match the height of the input */
+  width: 60px; /* Match the height of the input */
+  height: 60px; /* Match the height of the input */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,8 +114,8 @@ html, body {
 }
 
 .homepage-message-button{
-  width: 50px; /* Match the height of the input */
-  height: 50px; /* Match the height of the input */
+  width: 60px; /* Match the height of the input */
+  height: 60px; /* Match the height of the input */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,23 +148,24 @@ html, body {
 }
 
 .homepage-profile-picture {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
 }
 
 .homepage-profile-icon {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   margin-right: 10px;
   background-color: #618eff;
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
 }
 
 .homepage-profile-info {
