@@ -1,3 +1,14 @@
+@keyframes messageSent {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .message-container {
     display: flex;
     flex-direction: column;
@@ -35,20 +46,22 @@
     box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff;
   }
   
-  .message {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 60%;
-    word-wrap: break-word;
-    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
-  }
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 60%;
+  word-wrap: break-word;
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+  animation: messageSent 0.5s ease-out; /* Apply the animation */
+}
   
   .sent {
     align-self: flex-end;
     background-color: #618eff;
     color: white;
     text-align: right;
+    margin-left: auto;
   }
   
   .received {
@@ -56,6 +69,7 @@
     background-color: #e0e0e0;
     color: #333;
     text-align: left;
+    margin-right: auto; /* Ensure the message box is pushed to the left */
   }
   
   .message-input-container {
