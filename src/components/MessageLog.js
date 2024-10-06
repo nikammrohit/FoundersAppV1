@@ -76,8 +76,21 @@ const MessageLog = () => {
               .filter(participant => currentUser && participant !== currentUser.uid)
               .map(participant => (
                 <div key={participant} className="message-log-participant">
-                  <strong>{userDetails[participant] ? userDetails[participant].name : 'Unknown'}</strong>
-                  <div>@{userDetails[participant] ? userDetails[participant].username : 'Unknown'}</div>
+                  <div className="message-log-participant-details">
+                    <strong>{userDetails[participant] ? userDetails[participant].name : 'Unknown'}</strong>
+                    <div>@{userDetails[participant] ? userDetails[participant].username : 'Unknown'}</div>
+                  </div>
+                  {userDetails[participant] && userDetails[participant].profilePictureUrl ? (
+                    <img
+                      src={userDetails[participant].profilePictureUrl}
+                      alt="Profile"
+                      className="message-log-profile-picture"
+                    />
+                  ) : (
+                    <div className="message-log-profile-icon">
+                      {userDetails[participant] ? userDetails[participant].username.charAt(0).toUpperCase() : 'U'}
+                    </div>
+                  )}
                 </div>
               ))}
           </div>

@@ -3,12 +3,13 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #f0f0f3;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #e0e0e0;
     border-radius: 20px;
     box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
   }
   
   .message-log-conversations {
@@ -17,7 +18,7 @@
     overflow-y: auto;
     margin-bottom: 20px;
     padding: 10px;
-    background-color: #f0f0f3;
+    background-color: #e0e0e0;
     border-radius: 10px;
     box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff;
   }
@@ -25,6 +26,7 @@
   .message-log-conversation {
     margin: 10px 0;
     padding: 10px;
+    margin-bottom: 15px;
     border-radius: 10px;
     background-color: #e0e0e0;
     cursor: pointer;
@@ -36,7 +38,29 @@
   }
 
 .message-log-participant {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
+  justify-content: space-between; /* Pushes the profile icon to the right */
+}
+
+.message-log-profile-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #618eff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  margin-left: 50px;
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+}
+
+.message-log-participant-details {
+  display: flex;
+  flex-direction: column; /* Stack name and username vertically */
 }
 
 .message-log-participant strong {

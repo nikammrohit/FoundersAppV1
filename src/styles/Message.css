@@ -3,19 +3,22 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #f0f0f3;
+    background-color: #e0e0e0;
+    margin: auto;
+    margin-top: 20px;
     border-radius: 20px;
     box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
     width: 100%;
-    max-width: 400px; /* Adjusted max-width to match Signup component */
-    margin: 0 auto;
+    max-width: 80%; /* Adjusted max-width to match Signup component */
+    height: 80vh;
+    max-height: 80%;
   }
   
   .message-header {
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 20px;
-    background-color: #f0f0f3;
+    background-color: #e0e0e0;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
@@ -23,11 +26,11 @@
   
   .messages {
     width: 100%;
-    max-height: 300px; /* Adjusted max-height to match Signup component */
+    height: 70vh;
     overflow-y: auto;
     margin-bottom: 20px;
     padding: 10px;
-    background-color: #f0f0f3;
+    background-color: #e0e0e0;
     border-radius: 10px;
     box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff;
   }
@@ -36,7 +39,7 @@
     margin: 10px 0;
     padding: 10px;
     border-radius: 10px;
-    max-width: 80%;
+    max-width: 60%;
     word-wrap: break-word;
     box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
   }
@@ -45,19 +48,21 @@
     align-self: flex-end;
     background-color: #618eff;
     color: white;
+    text-align: right;
   }
   
   .received {
     align-self: flex-start;
     background-color: #e0e0e0;
     color: #333;
+    text-align: left;
   }
   
   .message-input-container {
     display: flex;
     width: 100%;
     align-items: center;
-    background-color: #f0f0f3;
+    background-color: #e0e0e0;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
@@ -68,7 +73,7 @@
     padding: 10px;
     border: none;
     border-radius: 10px;
-    background-color: #f0f0f3;
+    background-color: #e0e0e0;
     box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff;
     margin-right: 10px;
   }
