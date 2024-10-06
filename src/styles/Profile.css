@@ -70,6 +70,7 @@
     margin: 0;
     font-size: 1.5rem;
     color: #333;
+    text-shadow: 1px 1px 2px #bebebe, -1px -1px 2px #ffffff; /* Neumorphic shadows */
   }
   
   .edit-profile-button {
@@ -97,6 +98,7 @@
   .username {
     font-size: 1rem;
     color: #888;
+    text-shadow: 1px 1px 2px #bebebe, -1px -1px 2px #ffffff; /* Neumorphic shadows */
   }
 
   .message-button {
@@ -106,6 +108,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff; /* Neumorphic shadows */
   }
   
   .message-button:hover {
