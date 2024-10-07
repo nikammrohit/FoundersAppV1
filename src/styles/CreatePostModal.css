@@ -1,0 +1,97 @@
+/* src/styles/CreatePostModal.css */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-container {
+    background-color: #f0f0f3;
+    border-radius: 20px;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .modal-header h2 {
+    margin: 0;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  
+  .post-textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff;
+    resize: none;
+    font-size: 1rem;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .cancel-button,
+  .submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .cancel-button {
+    background-color: #f8d7da;
+  }
+  
+  .cancel-button:hover {
+    background-color: #f5c2c7;
+  }
+  
+  .submit-button {
+    background-color: #618eff;
+    color: white;
+  }
+  
+  .submit-button:hover {
+    background-color: #4c70cb;
+  }
+  
+  .submit-button:active {
+    transform: scale(0.95);
+    box-shadow: inset 7px 7px 15px #bebebe, inset -7px -7px 15px #ffffff;
+  }

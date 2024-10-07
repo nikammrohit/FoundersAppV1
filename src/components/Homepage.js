@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { firestore, auth } from './firebase'; // Ensure these are correctly imported
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, addDoc, query, orderBy } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import '../styles/Homepage.css';
 import Footer from './Footer'; // Import the Footer component
 import { FaSearch } from 'react-icons/fa'; // Import Font Awesome search icon
+import CreatePostModal from './CreatePostModal.js'; // Import the CreatePostModal component
 
 const Homepage = () => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState(null);
   const [usernameInitial, setUsernameInitial] = useState('P');
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [posts, setPosts] = useState([]); // State for posts
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchedProfiles, setSearchedProfiles] = useState([]);
@@ -77,6 +81,7 @@ const Homepage = () => {
       if (user) {
         setUserId(user.uid);
         fetchProfile(user.uid);
+        fetchPosts(); // Fetch posts when the user is authenticated
       } else {
         navigate('/login'); // Redirect to login if no user is signed in
       }
@@ -88,14 +93,58 @@ const Homepage = () => {
     handleSearch();
   };
 
+  // Function to fetch posts
+  const fetchPosts = async () => {
+    try {
+      const postsRef = collection(firestore, 'posts');
+      const q = query(postsRef, orderBy('createdAt', 'desc'));
+      const postsSnapshot = await getDocs(q);
+      const postsData = postsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setPosts(postsData);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  };
+
   const handleMessagesClick = () => {
     navigate(`/message-log/${userId}`); // Redirect to the user's messages page
+  };
+  
+  const createPost = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleSubmitPost = (content) => {
+    console.log('Post content:', content);
+    handleCreatePost(content);
+    // Add logic to handle post submission, e.g., save to Firestore
+  };
+
+  const handleCreatePost = async (postContent) => {
+    if (postContent.trim() === '') return;
+
+    try {
+      const newPost = {
+        content: postContent,
+        createdAt: new Date(),
+        userId: userId,
+      };
+      const docRef = await addDoc(collection(firestore, 'posts'), newPost);
+      newPost.id = docRef.id; // Add the document ID to the new post
+      setPosts([newPost, ...posts]); // Update the state to include the new post
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Error creating post:', error);
+    }
   };
 
   return (
     <div className='homepage-background'>
       <div className="homepage-search-bar-container">
         <div className="homepage-search-bar">
+          <button onClick={createPost} className="homepage-createPost-button">
+            <p className="homepage-createPost-icon">+</p>
+          </button>
           <input
             type="text"
             value={searchTerm}
@@ -112,6 +161,41 @@ const Homepage = () => {
             <p className="homepage-message-icon">💬</p>
           </button>
         </div>
+      </div>
+
+      <CreatePostModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onCreatePost={handleCreatePost} // Pass the handleCreatePost function
+        onSubmit={handleSubmitPost}
+      />
+
+      <div className="posts-container">
+        {posts.map((post) => (
+          <div key={post.id} className="post-card">
+            <div className="post-header">
+              {post.userProfilePictureUrl ? (
+                <img src={post.userProfilePictureUrl} alt="Profile" className="post-profile-picture" />
+              ) : (
+                <div className="post-profile-icon">
+                  {usernameInitial}
+                </div>
+              )}
+              <span className="post-username">{post.username}</span>
+            </div>
+            <div className="post-content">
+              <p>{post.content}</p>
+            </div>
+            <div className="post-footer">
+              <small>{new Date(post.createdAt.seconds * 1000).toLocaleString()}</small>
+              <div className="post-actions">
+                <button className="post-action-button">❤️</button>
+                <button className="post-action-button">💬</button>
+                <button className="post-action-button">🔗</button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
       <button onClick={() => handleProfileClick(userId)} className="homepage-user-profile-button">
