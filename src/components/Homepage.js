@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { firestore, auth } from './firebase'; // Ensure these are correctly imported
-import { collection, doc, getDoc, getDocs, addDoc, query, orderBy } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, addDoc, query, orderBy, deleteDoc} from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import '../styles/Homepage.css';
 import Footer from './Footer'; // Import the Footer component
@@ -138,6 +138,15 @@ const Homepage = () => {
     }
   };
 
+  const handleDeletePost = async (postId) => {
+    try {
+      await deleteDoc(doc(firestore, 'posts', postId));
+      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  };
+
   return (
     <div className='homepage-background'>
       <div className="homepage-search-bar-container">
@@ -198,8 +207,7 @@ const Homepage = () => {
       )}
       {error && <p className="homepage-error">{error}</p>}
       <div className="homepage-headerTitle">
-        <h1>Welcome to the Homepage!</h1>
-        <p>You are now logged in.</p>
+        <h1>Welcome to Founders!</h1>
       </div>
 
       <CreatePostModal
@@ -231,6 +239,11 @@ const Homepage = () => {
                 <button className="post-action-button">❤️</button>
                 <button className="post-action-button">💬</button>
                 <button className="post-action-button">🔗</button>
+                {post.userId === userId && (
+                <button className="post-delete-button" onClick={() => handleDeletePost(post.id)}>
+                  🗑️
+                </button>
+                )}
               </div>
             </div>
           </div>

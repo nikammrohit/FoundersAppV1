@@ -226,6 +226,8 @@ html, body {
   box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
   padding: 20px;
   margin-bottom: 20px;
+
+  position: relative; /* Add this to position the delete button */
 }
 
 .post-header {
@@ -289,5 +291,23 @@ html, body {
 }
 
 .post-action-button:active {
+  transform: scale(0.95);
+}
+
+.post-delete-button {
+  background: #e0e0e0;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #bebebe, -2px -2px 5px #ffffff;
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 10px;
+  position: absolute; /* Position the button absolutely */
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  transition: transform 0.1s;
+}
+
+.post-delete-button:active {
   transform: scale(0.95);
 }
