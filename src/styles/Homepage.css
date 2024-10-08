@@ -6,11 +6,22 @@ html, body {
   padding: 0;
   height: 100%;
   background-color: #e0e0e0; /* Set the background color */
+  flex-direction: column;
+  display: flex;
+}
+
+.homepage-container{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+footer{
+  margin-top: auto;
 }
 
 .homepage-background {
   background-color: #e0e0e0;
-
 }
 
 /* src/styles/Homepage.css */
@@ -256,7 +267,17 @@ html, body {
   margin-right: 10px;
 }
 
+.post-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .post-username {
+  font-weight: bold;
+  color: #666;
+}
+
+.post-profile-name {
   font-weight: bold;
 }
 
