@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { firestore, auth } from './firebase'; // Ensure these are correctly imported
-import { collection, doc, getDoc, getDocs, addDoc, query, orderBy, deleteDoc} from 'firebase/firestore';
+import { Timestamp, collection, doc, getDoc, getDocs, addDoc, query, orderBy, deleteDoc} from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import '../styles/Homepage.css';
 import Footer from './Footer'; // Import the Footer component
@@ -126,7 +126,7 @@ const Homepage = () => {
     try {
       const newPost = {
         content: postContent,
-        createdAt: new Date(),
+        createdAt: Timestamp.now(), // Use Firestore's Timestamp,
         userId: userId,
       };
       const docRef = await addDoc(collection(firestore, 'posts'), newPost);
