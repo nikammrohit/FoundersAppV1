@@ -163,40 +163,6 @@ const Homepage = () => {
         </div>
       </div>
 
-      <CreatePostModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onCreatePost={handleCreatePost} // Pass the handleCreatePost function
-        onSubmit={handleSubmitPost}
-      />
-
-      <div className="posts-container">
-        {posts.map((post) => (
-          <div key={post.id} className="post-card">
-            <div className="post-header">
-              {post.userProfilePictureUrl ? (
-                <img src={post.userProfilePictureUrl} alt="Profile" className="post-profile-picture" />
-              ) : (
-                <div className="post-profile-icon">
-                  {usernameInitial}
-                </div>
-              )}
-              <span className="post-username">{post.username}</span>
-            </div>
-            <div className="post-content">
-              <p>{post.content}</p>
-            </div>
-            <div className="post-footer">
-              <small>{new Date(post.createdAt.seconds * 1000).toLocaleString()}</small>
-              <div className="post-actions">
-                <button className="post-action-button">❤️</button>
-                <button className="post-action-button">💬</button>
-                <button className="post-action-button">🔗</button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
 
       <button onClick={() => handleProfileClick(userId)} className="homepage-user-profile-button">
         {usernameInitial}
@@ -235,6 +201,42 @@ const Homepage = () => {
         <h1>Welcome to the Homepage!</h1>
         <p>You are now logged in.</p>
       </div>
+
+      <CreatePostModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onCreatePost={handleCreatePost} // Pass the handleCreatePost function
+        onSubmit={handleSubmitPost}
+      />
+
+      <div className="posts-container">
+        {posts.map((post) => (
+          <div key={post.id} className="post-card">
+            <div className="post-header">
+              {post.userProfilePictureUrl ? (
+                <img src={post.userProfilePictureUrl} alt="Profile" className="post-profile-picture" />
+              ) : (
+                <div className="post-profile-icon">
+                  {usernameInitial}
+                </div>
+              )}
+              <span className="post-username">{post.username}</span>
+            </div>
+            <div className="post-content">
+              <p>{post.content}</p>
+            </div>
+            <div className="post-footer">
+              <small>{new Date(post.createdAt.seconds * 1000).toLocaleString()}</small>
+              <div className="post-actions">
+                <button className="post-action-button">❤️</button>
+                <button className="post-action-button">💬</button>
+                <button className="post-action-button">🔗</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
       <Footer />
     </div>
   );
