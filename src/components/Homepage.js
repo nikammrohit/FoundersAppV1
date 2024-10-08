@@ -244,10 +244,18 @@ const Homepage = () => {
             <div key={post.id} className="post-card">
               <div className="post-header">
                 {post.userProfilePictureUrl ? (
-                  <img src={post.userProfilePictureUrl} alt="Profile" className="post-profile-picture" />
+                  <img src={post.userProfilePictureUrl} 
+                    alt="Profile" 
+                    className="post-profile-picture" 
+                    onClick={() => handleProfileClick(post.userId)}
+                    style={{ cursor: 'pointer' }}
+                  />
                 ) : (
-                  <div className="post-profile-icon">
-                    {usernameInitial}
+                  <div className="post-profile-icon"
+                    onClick={() => handleProfileClick(post.userId)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {post.username ? post.username.charAt(0).toUpperCase() : 'U'}
                   </div>
                 )}
                 <div className="post-user-info">
